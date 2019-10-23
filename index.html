@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+    <title>Draw a digit</title>
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #title {
+            width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            margin-top: 30px;
+        }
+        #content {
+            width: 800px;
+            height: 500px;
+            margin: 0 auto;
+            border: 1px dotted black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="title">
+        <h2> html canvas</h2>
+    </div>
+    <div id="content">
+        <canvas id="digitCanvas"></canvas>
+    </div>
+    <script type="text/javascript">
+        var canvas = document.getElementById("digitCanvas");
+        var ctx = canvas.getContext("2d");
+        var painting = document.getElementById("content");
+        var paintStyle = getComputedStyle(painting);
+        canvas.width = parseInt(paintStyle.getPropertyValue("width"));
+        canvas.height = parseInt(paintStyle.getPropertyValue("height"));
+
+        var mouse = { x: 0, y: 0 };
+
+        canvas.addEventListener('mousemove', function (e) {
+            mouse.x = e.pageX - this.offsetLeft;
+            mouse.y = e.pageY - this.offsetTop;
+        }, false);
+
+        ctx.lineWidth = 3;
+        ctx.lineJoin = 'round';
+        ctx.lineCap = 'round';
+        ctx.strokeStyle = '#FF0000';
+
+
+        canvas.addEventListener('mousedown', function (e) {
+            ctx.beginPath();
+            ctx.moveTo(mouse.x, mouse.y);
+            canvas.addEventListener('mousemove', onPaint, false);
+        }, false);
+
+        canvas.addEventListener('mouseup', function () {
+            canvas.removeEventListener('mousemove', onPaint, false);
+        }, false);
+
+        var onPaint = function () {
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.stroke();
+        };
+    </script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
+</body>
+
+</html>
