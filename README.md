@@ -3,24 +3,28 @@ An artificial neural network is an interconnected group of nodes, inspired by a 
 
 Each node has a bias and weight(s). Bias is an extra input to neurons and it is always 1, and has it’s own connection weight. This makes sure that even when all the inputs are none (all 0’s) there’s gonna be an activation in the neuron.
 
-
-Y = sigma(weight * input) + bias
-
+<img src="https://github.com/MakarenkoElena91/EmTech/blob/master/img/equation.png"/>
 <img src="https://github.com/MakarenkoElena91/EmTech/blob/master/img/an.png"/>
 
 
+##Data
+Input of 10 neurons- as we have 10 numbers from 0 till 9. All images are of 28x28 px size, which is 784 "flatterned" pixels
 
 ## Types of Activation Functions
 The main purpose of an activation function is to convert an input signal of a node in a artificial neural network to an output signal. That output signal now is used as an input in the next layer in the stack.
 
 1. Sigmoid or Logistic 
 f(x) = 1 / 1 + exp(-x)
+<img src="https://github.com/MakarenkoElena91/EmTech/blob/master/img/sigmoid.png"/>
+
 This function is usually used in the output layer, as adapts the output to range from 0 to 1(probability).
 2. Tanh — Hyperbolic tangent
 3. ReLu -Rectified linear units
 Should be used only in hidden layers of neural network.
 
+
 Reference
+
 https://en.wikipedia.org/wiki/Artificial_neural_network
 https://towardsdatascience.com/activation-functions-and-its-types-which-is-better-a9a5310cc8f
 https://hackernoon.com/everything-you-need-to-know-about-neural-networks-8988c3ee4491
