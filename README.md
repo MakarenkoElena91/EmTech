@@ -15,7 +15,7 @@ A neuron is a weighted sum of all of its inputs(pixels) + bias and this sum is "
 <img src="https://github.com/MakarenkoElena91/EmTech/blob/master/img/an.png"/>
 
 
-##Data
+## Data
 Input of 10 neurons- as we have 10 numbers from 0 till 9. All images are of 28x28 px size, which is 784 "flattened" pixels.
 Matrix multiplication: First matrix (100x784): 100 images, one per line by 784 pixels. Second matrix(784x10) 784 pixels by 10 biases
                                                      
@@ -35,15 +35,16 @@ Initially weights and biases are assigned randomly.
 ## Types of Activation Functions
 The main purpose of an activation function is to convert an input signal of a node in a artificial neural network to an output signal. That output signal now is used as an input in the next layer in the stack.
 
-1. Sigmoid or Logistic 
+1. Softmax output to range from 0 to 1
+2. Sigmoid or Logistic 
 f(x) = 1 / 1 + exp(-x)
 <img src="https://github.com/MakarenkoElena91/EmTech/blob/master/img/sigmoid.png"/>
 
 This function is usually used in the output layer, as adapts the output to range from 0 to 1(probability).
-2. Tanh — Hyperbolic tangent
-3. ReLu -Rectified linear units
+3. ReLu -Rectified linear units. 0 for all negative numbers and identity for all positive numbers.
 Should be used only in hidden layers of neural network.
-4. Softmax 
+
+<img src="https://github.com/MakarenkoElena91/EmTech/blob/master/img/relu.png"/>
 
 Reference
 
