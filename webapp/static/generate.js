@@ -1,21 +1,20 @@
-var canvas = document.getElementById("digitCanvas");
-var ctx = canvas.getContext("2d");
-var painting = document.getElementById("content");
-var paintStyle = getComputedStyle(painting);
+let canvas = document.getElementById("digitCanvas");
+let ctx = canvas.getContext("2d");
+let painting = document.getElementById("content");
+let paintStyle = getComputedStyle(painting);
 canvas.width = parseInt(paintStyle.getPropertyValue("width"));
 canvas.height = parseInt(paintStyle.getPropertyValue("height"));
 
-var mouse = { x: 0, y: 0 };
+let mouse = { x: 0, y: 0 };
 
 canvas.addEventListener('mousemove', function (e) {
     mouse.x = e.pageX - this.offsetLeft;
     mouse.y = e.pageY - this.offsetTop;
 }, false);
 
-ctx.lineWidth = 3;
 ctx.lineJoin = 'round';
 ctx.lineCap = 'round';
-ctx.strokeStyle = '#FF0000';
+ctx.strokeStyle = '#ff0000';
 
 canvas.addEventListener('mousedown', function (e) {
     ctx.beginPath();
@@ -44,16 +43,16 @@ $(document).ready(function(e) {
   
   // Add a click handler to the submit button.
   $("#guessButton").click(function(e) {
-    var imgURL = digitCanvas.toDataURL();
-    console.log("get it ", imgURL)
+    let imgURL = digitCanvas.toDataURL();
+    console.log("generate.js imgURL  ", imgURL)
      
     // Prevent the form actually submitting.
     e.preventDefault();
     
-    // Send AJAX request for new numbers.
+    
     $.post("/guess", {"imgURL": imgURL}, function(data){
      
-      // Update the text area with the numbers.
+     
       $("#guess").text();
     
     });
