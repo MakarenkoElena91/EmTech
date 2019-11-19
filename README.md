@@ -9,12 +9,14 @@ bash Anaconda3-5.3.1-Linux-x86_64.sh
 ```jupyter notebook ```
 or
 ```jupyter lab```
+4. it will automatically run in the default browser or copy the url and paste it in the browser 
 
 Run frontend:
-$ env FLASK_APP=webapp.py flask run
+
+ ```env FLASK_APP=webapp.py flask run```
  * Serving Flask app "webapp"
  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-4. it will automatically run in the default browser or copy the url and paste it in the browser 
+
 ## What is a neural network?
 An artificial neural network is an interconnected group of nodes, inspired by a simplification of neurons in a brain. Here, each circular node represents an artificial neuron and an arrow represents a connection from the output of one artificial neuron to the input of another.
 
