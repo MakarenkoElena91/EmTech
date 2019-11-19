@@ -12,9 +12,10 @@ canvas.addEventListener('mousemove', function (e) {
     mouse.y = e.pageY - this.offsetTop;
 }, false);
 
+ctx.lineWidth = 20;
 ctx.lineJoin = 'round';
 ctx.lineCap = 'round';
-ctx.strokeStyle = '#ff0000';
+ctx.strokeStyle = '#ffffff';
 
 canvas.addEventListener('mousedown', function (e) {
     ctx.beginPath();
@@ -38,26 +39,24 @@ function clearArea() {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 }
 
+
+
 // Wait until the DOM is ready.
 $(document).ready(function(e) {
-  
+
   // Add a click handler to the submit button.
   $("#guessButton").click(function(e) {
-    let imgURL = digitCanvas.toDataURL();
-    console.log("generate.js imgURL  ", imgURL)
-     
+
     // Prevent the form actually submitting.
     e.preventDefault();
-    
-    
-    $.post("/guess", {"imgURL": imgURL}, function(data){
-     
-     
-      $("#guess").text();
-    
+     canvas = document.getElementById("digitCanvas");
+    $.post("/guess", {"imgURL": digitCanvas.toDataURL()}, function(data){
+
+      $("#guess").text(data.message);
+
     });
-  
-  });                  
+
+  });
 
 });
 

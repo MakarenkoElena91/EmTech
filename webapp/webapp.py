@@ -3,14 +3,12 @@ from PIL import Image
 from io import BytesIO
 import numpy as np
 import re, time, base64
-# Importing the Keras libraries and packages
 import keras
 import tensorflow as tf
 from tensorflow.keras.models import load_model
-from prediction import get_prediction
+import json
 
-# model = load_model('./static/models/convomodel.h5')
-model = load_model('./static/models/myResult.model')
+model = load_model('./static/models/model1.h5')
 model.summary()
 
 app = Flask(__name__)
@@ -27,23 +25,33 @@ def get_image():
     base64_data = re.sub('^data:image/.+;base64,', '', imgString)
     byte_data = base64.b64decode(base64_data)
     image_data = BytesIO(byte_data)
+    print(image_data.getvalue())
     img = Image.open(image_data)
-    t = time.time()
     img.save("imagefile.png")
     img = Image.open('imagefile.png').convert("L")
+    print(img)
     img = img.resize((28, 28))
-    im2arr = np.array(img)
+    im2arr = ~np.array(img)/255.0
+    im2arr = keras.utils.normalize(im2arr, axis=1)
+
+    for r in im2arr:
+        for c in r:
+            print(round(c, 1), end=" ")
+        print()
+
     im2arr = im2arr.reshape(1, 28, 28, 1)
-    im2arr = tf.cast(im2arr, tf.float64)
+    # im2arr = im2arr.astype('float32')
+    im2arr = tf.cast(im2arr, tf.float32)
+    # im2arr = np_utils.to_categorical(im2arr)
+
     # Predicting the Test set results
     predict = model.predict(im2arr)
-    #predict = get_prediction(im2arr, model)
-    print(predict)
-    correct_indices = np.nonzero(predict)
-    print(correct_indices)
-    print("The program predicts image number to be:", correct_indices[-1])
+    args = int(np.argmax(predict))
+    args = json.dumps(args)
+    print("args", np.argmax(predict))
+    print("Number is ", predict)
 
-    return ''
+    return {'message': args}
 
 # testing versions
 @app.route('/version')
