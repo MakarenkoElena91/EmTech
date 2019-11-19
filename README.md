@@ -1,13 +1,18 @@
 ## How to run?
+Run backend:
 1. install anaconda
+In order to install it on linux run the following commands in terminal:
+wget https://repo.anaconda.com/archive/Anaconda3-5.3.1-Linux-x86_64.sh
+bash Anaconda3-5.3.1-Linux-x86_64.sh
 2. clone this repository
 3. open terminal in the current folder and run the following command:
 ```jupyter notebook ```
 or
 ```jupyter lab```
 
-$ env FLASK_APP=hello.py flask run
- * Serving Flask app "hello"
+Run frontend:
+$ env FLASK_APP=webapp.py flask run
+ * Serving Flask app "webapp"
  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
 4. it will automatically run in the default browser or copy the url and paste it in the browser 
 ## What is a neural network?
