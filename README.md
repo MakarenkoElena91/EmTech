@@ -56,3 +56,5 @@ https://en.wikipedia.org/wiki/Artificial_neural_network
 https://towardsdatascience.com/activation-functions-and-its-types-which-is-better-a9a5310cc8f
 https://hackernoon.com/everything-you-need-to-know-about-neural-networks-8988c3ee4491
 https://www.youtube.com/watch?v=-wW9LMRXPsE
+
+https://medium.com/coinmonks/handwritten-digit-prediction-using-convolutional-neural-networks-in-tensorflow-with-keras-and-live-5ebddf46dc8
