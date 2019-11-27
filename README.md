@@ -98,7 +98,7 @@ Should be used only in hidden layers of neural network.
 
 model.save("model.h5")
 
-### Frontend
+# Frontend
 
 The main thing is to format the data you are sending to backend. It should match the data of the training set. 
 As our canvas size is 200x200 and the image needs to be send in 28x28 size we face a couple of issues: 
@@ -106,7 +106,7 @@ image can be drawn somewhere in the corner or not properly centered and sized.
 
 In order to solve these problems, a number of steps were taken:
 
-1. Crop image
+## 1. Crop image
 
 Function np.nonzero(img) returns a tuple of arrays, one for each dimension of arr, containing the indices of the non-zero elements in that dimension.
 As we draw our image white and white is rgb(255, 255, 255) this function suits us perfectly well.
@@ -116,21 +116,33 @@ This will give us the left and upper bounds.
 (np.nonzero(img)).max() finds the very last indices of the elements that are non-zero. 
 In order to get the bottom and right bounds we need subtract those values from the totla number of pixels.
 
-2. Resize the image 20x20
+## 2. Resize the image 20x20
 
 The actual digit size in mnist dataset is 20x20 the rest 8 pixels is the white frame around it. 
 Depending on whether the height of the image is bigger than width or the other way round, the image was resized to 20x20.
 Ref:https://stackoverflow.com/a/57990437
 
-3. Find the center of mass
-Now when we have the correct "digit size" we neeed to find out where to place it on 28x28 blank image. The digit image won't always have exact 4 pixels frame at each side. 
+## 3. Find the center of mass
+Now when we have the correct "digit size" we neeed to find out where to place it on 28x28 blank image. The digit image won't always have exact 4 pixels frame at each side.
+Center of mass is "mean value across each dimension". In other words - take all x coordinates and average them - and you got x coordinate of your "center of mass", the same for y.
+
 How to calculate center of mass?
-<img src="https://github.com/MakarenkoElena91/EmTech/blob/master/img/sigmoid.png"/>
+<img src="https://github.com/MakarenkoElena91/EmTech/blob/master/img/matrix.png"/>
+1. Calculate the total number of black pixels (in our example it is 4).
+2. Calculate the distance till every black pixel at each row.
+3. Sum them up (in our example it is 1+3+0+2=6).
+4. Divide the sum you got in point 3 by the number you got in point 1. That is x coordinate of our "center of mass".(in our example it is 6/4=1.5)
+5. Calculate the distance till every black pixel at each column.
+6. Sum them up (in our example it is 2+0+3+1=6).
+7. Divide the sum you got in point 6 by the number you got in point 1. That is y coordinate of our "center of mass".
+(in our example it is6/4=1.5)
 
-4. Recenter and resize image to 28x28
+## 4. Recenter and resize image to 28x28
 Ref:https://stackoverflow.com/questions/11142851/adding-borders-to-an-image-using-python
-5. Make it grayscale
 
+Calculate the top & left offset. As our image is 28x28, the center of it is (14, 14). In order to calculate top & left offset we need substract the center (x,y) of the new blank image and center (x, y) of the digit image. The calculated result (x, y) are the coordinates where digit image should be pasted into our new image.
+## 5. Make it grayscale
+## 6. Transform image to an array & reformat the array accordingly
 Now when we have an image which matches the size and format of the training image, we can transform this image into an array of pixels as our neural network cant understand images, it works only with numbers. The way pixels are represented in the array also should match the training array. So we are doing the same manipulation we did in the backend: reshape array to 
 (1, 28, 28, 1), where the first 1 is our image, 28 and 28 is the size and 1 is the channel. We also need to cast it to float 32 and divide by 255 - same way we did in the backend.
 
