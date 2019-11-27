@@ -148,6 +148,7 @@ Should be used only in hidden layers of neural network.
  
 ## Training Neural Network
 We pass training set of images & training set of labels,the batch size(number of samples neural network is being trained on at a time) defined as 128*, number of epochs - number of iterations neural network is being retrained (which is 12 in our case) , verbose=1 (which shows a progress bar and validation_data(data on which to evaluate the loss and any model metrics at the end of each epoch)
+
 ``model.fit(image_train, label_train,
           batch_size=batch_size,
           epochs=epochs,
@@ -188,14 +189,17 @@ In order to get the bottom and right bounds we need subtract those values from t
 
 The actual digit size in mnist dataset is 20x20 the rest 8 pixels is the white frame around it. 
 Depending on whether the height of the image is bigger than width or the other way round, the image was resized to 20x20.
-[2] (https://stackoverflow.com/a/57990437)
+[https://stackoverflow.com/a/57990437][2] 
 
 ### 3. Find the center of mass
 Now when we have the correct "digit size" we neeed to find out where to place it on 28x28 blank image. The digit image won't always have exact 4 pixels frame at each side.
 Center of mass is "mean value across each dimension". In other words - take all x coordinates and average them - and you got x coordinate of your "center of mass", the same for y.
 
 How to calculate center of mass?
+<p align="center">
 <img src="https://github.com/MakarenkoElena91/EmTech/blob/master/img/matrix.png"/>
+</p>
+
 1. Calculate the total number of black pixels (in our example it is 4).
 2. Calculate the distance till every black pixel at each row.
 3. Sum them up (in our example it is 1+3+0+2=6).
@@ -206,7 +210,7 @@ How to calculate center of mass?
 (in our example it is6/4=1.5)
 
 ### 4. Recenter and resize image to 28x28
-Ref:[1] (https://stackoverflow.com/questions/11142851/adding-borders-to-an-image-using-python)
+[https://stackoverflow.com/questions/11142851/adding-borders-to-an-image-using-python][2] 
 
 Calculate the top & left offset. As our image is 28x28, the center of it is (14, 14). In order to calculate top & left offset we need substract the center (x,y) of the new blank image and center (x, y) of the digit image. The calculated result (x, y) are the coordinates where digit image should be pasted into our new image.
 
