@@ -33,7 +33,7 @@ def get_image():
     rows, cols = np.nonzero(img)
     left = cols.min()
     up = rows.min()
-    right = (199-cols.max())
+    right = (199 - cols.max())
     bottom = 199 - rows.max()
     border = (left, up, right, bottom)
     img = ImageOps.crop(img, border)
@@ -41,6 +41,7 @@ def get_image():
     print("cropped", img.size)
     # ----------------------------------------------------------------------------------------------------
     # resize the image 20x20
+    # Ref:https://stackoverflow.com/a/57990437
     size = 20
     width, height = img.size[:2]
     # ? x 20
@@ -102,20 +103,18 @@ def get_image():
     print("offset", offset[0], offset[1])
     background.paste(img, offset)
     background.save("28x28.png")
-    print("28x28", img)
+    # print("28x28", img)
     img = Image.open('28x28.png').convert("L")
-    print("img.size", img.size)
-    im2arr = ~np.array(img)/255.0
-    # print("im2arr.size", im2arr.size)
-    # im2arr = keras.utils.normalize(im2arr, axis=1)
+    # print("img.size", img.size)
+    im2arr = np.array(img)
 
-    # for r in im2arr:
-    #     for c in r:
-    #         print(round(c, 1), end=" ")
-    #     print()
+    for r in im2arr:
+        for c in r:
+            print(round(c, 1), end=" ")
+        print()
 
     im2arr = im2arr.reshape(1, 28, 28, 1) # im2arr = im2arr.astype('float32')
-    im2arr = tf.cast(im2arr, tf.float32)
+    im2arr = tf.cast(im2arr, tf.float32)/255.0
     # -----------------------------------------------------------------------------------------------------
     # Predicting the Test set results
     predict = model.predict(im2arr)
