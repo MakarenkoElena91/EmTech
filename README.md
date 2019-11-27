@@ -189,7 +189,7 @@ In order to get the bottom and right bounds we need subtract those values from t
 
 The actual digit size in mnist dataset is 20x20 the rest 8 pixels is the white frame around it. 
 Depending on whether the height of the image is bigger than width or the other way round, the image was resized to 20x20.
-[https://stackoverflow.com/a/57990437][2] 
+[https://stackoverflow.com/a/57990437][1] 
 
 ### 3. Find the center of mass
 Now when we have the correct "digit size" we neeed to find out where to place it on 28x28 blank image. The digit image won't always have exact 4 pixels frame at each side.
@@ -229,8 +229,9 @@ https://www.youtube.com/watch?v=-wW9LMRXPsE
 https://medium.com/coinmonks/handwritten-digit-prediction-using-convolutional-neural-networks-in-tensorflow-with-keras-and-live-5ebddf46dc8
 https://keras.io/models/sequential/
 https://www.codesofinterest.com/2017/09/keras-image-data-format.html
-[1]: https://stackoverflow.com/questions/11142851/adding-borders-to-an-image-using-python
-[2]: https://stackoverflow.com/a/57990437
+[1]: https://stackoverflow.com/a/57990437
+[2]: https://stackoverflow.com/questions/11142851/adding-borders-to-an-image-using-python
+
 
 
 ~ Special thanks to Mindaugas Sarskus and Jose Retamal for explaining how to calculate the center of mass of an image.
