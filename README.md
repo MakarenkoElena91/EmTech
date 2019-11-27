@@ -138,7 +138,7 @@ How to calculate center of mass?
 (in our example it is6/4=1.5)
 
 ## 4. Recenter and resize image to 28x28
-Ref:https://stackoverflow.com/questions/11142851/adding-borders-to-an-image-using-python
+Ref:[1](https://stackoverflow.com/questions/11142851/adding-borders-to-an-image-using-python)
 
 Calculate the top & left offset. As our image is 28x28, the center of it is (14, 14). In order to calculate top & left offset we need substract the center (x,y) of the new blank image and center (x, y) of the digit image. The calculated result (x, y) are the coordinates where digit image should be pasted into our new image.
 ## 5. Make it grayscale
@@ -154,3 +154,4 @@ https://hackernoon.com/everything-you-need-to-know-about-neural-networks-8988c3e
 https://www.youtube.com/watch?v=-wW9LMRXPsE
 https://medium.com/coinmonks/handwritten-digit-prediction-using-convolutional-neural-networks-in-tensorflow-with-keras-and-live-5ebddf46dc8
 https://www.codesofinterest.com/2017/09/keras-image-data-format.html
+https://stackoverflow.com/questions/11142851/adding-borders-to-an-image-using-python
