@@ -147,7 +147,7 @@ Should be used only in hidden layers of neural network.
  </p>
  
 ## Training Neural Network
-We pass training set of images & training set of labels,the batch size(number of samples neural network is being trained on at a time) defined as 128*, number of epochs - number of iterations neural network is being retrained (which is 12 in our case) , verbose=1 (which shows a progress bar and validation_data(data on which to evaluate the loss and any model metrics at the end of each epoch)
+In order to train the neural network we call fit function on model and pass training set of images & training set of labels,the batch size(number of samples neural network is being trained on at a time) defined as 128*, number of epochs - number of iterations neural network is being retrained (which is 12 in our case) , verbose=1 (1 shows a progress bar, 0 = silent) and validation_data(data on which to evaluate the loss and any model metrics at the end of each epoch)
 
 ``model.fit(image_train, label_train,
           batch_size=batch_size,
@@ -166,7 +166,11 @@ To save the model:
 
 `` @app.route('/guess', methods=['GET', 'POST'])
 def get_image():
-    imgString = request.values.get("imgURL") ``
+    imgString = request.values.get("imgURL") 
+     base64_data = re.sub('^data:image/.+;base64,', '', imgString)
+    byte_data = base64.b64decode(base64_data)
+    image_data = BytesIO(byte_data) # print(image_data.getvalue())
+    img = Image.open(image_data).convert("L")``
     
 ## Formatting data
 The main thing is to format the data you are sending to backend. It should match the data of the training set. 
