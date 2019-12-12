@@ -37,8 +37,8 @@ def get_image():
     bottom = 199 - rows.max()
     border = (left, up, right, bottom)
     img = ImageOps.crop(img, border)
-    img.save("cropped.png")
-    print("cropped", img.size)
+    # img.save("cropped.png")
+    # print("cropped", img.size)
     # ----------------------------------------------------------------------------------------------------
     # resize the image 20x20
     # Ref:https://stackoverflow.com/a/57990437
