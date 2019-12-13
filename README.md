@@ -4,7 +4,7 @@
 * [Technologies](#technologies)
 * [How to run](#how-to-run)
 * [What is a neural network?](#what-is-a-neural-network)
-* [Backend](#backend)
+* [Notebook](#notebook)
   * [MNIST Dataset](#mnist-dataset)
   * [Load data](#load-data)
   * [One Hot Encoding](#one-hot-encoding)
@@ -13,6 +13,7 @@
   * [Saving Model](#saving-model)  
 * [Frontend](#frontend)
   * [Sending an http request](#sending-an-http-request)
+* [Backend](#backend)
   * [Formatting data](#formatting-data)
 * [Sources](#sources)
 
@@ -63,7 +64,7 @@ A neuron is a weighted sum of all of its inputs(pixels) + bias and this sum is "
 In this project a convolutional neural network is used as it is more accurate in comparison to sequential one. 
 As we are working with images and Conv2D works well on images while Conv1D on text, thus Conv2D is used.
 
-# Backend
+# Notebook
 ## MNIST Dataset 
 The MNIST dataset is an acronym that stands for the Modified National Institute of Standards and Technology dataset.
 It is a dataset of 4 files that contains:
@@ -172,16 +173,43 @@ To save the model:
 ```model.save("modelName.h5")```
 
 # Frontend
+* jQuery library
+```javascript 
+// Wait until the DOM is ready.
+$(document).ready(function(e) {
 
+  // Add a click handler to the submit button.
+  $("#guessButton").click(function(e) {
+
+    // Prevent the form actually submitting.
+    e.preventDefault();
+     canvas = document.getElementById("digitCanvas");
+    $.post("/guess", {"imgURL": digitCanvas.toDataURL()}, function(data){
+
+      $("#guess").text(data.message);
+
+    });
+
+  });
+
+});
+```
+
+# Backend    
 ## Sending an http request
-
-`` @app.route('/guess', methods=['GET', 'POST'])
+```python
+@app.route('/guess', methods=['GET', 'POST'])
 def get_image():
     imgString = request.values.get("imgURL") 
-     base64_data = re.sub('^data:image/.+;base64,', '', imgString)
+    //convert image to base64 format and crop metadata in the beginning 
+    base64_data = re.sub('^data:image/.+;base64,', '', imgString)
+    //decode it to byte array
     byte_data = base64.b64decode(base64_data)
-    image_data = BytesIO(byte_data) # print(image_data.getvalue())
-    img = Image.open(image_data).convert("L")``
+    //stream of bytes
+    image_data = BytesIO(byte_data) 
+    //open the image and make it greyscale
+    img = Image.open(image_data).convert("L")
+  ```
     
 ## Formatting data
 The main thing is to format the data you are sending to backend. It should match the data of the training set. 
