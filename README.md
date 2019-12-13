@@ -135,9 +135,7 @@ Initially weights and biases are assigned randomly.
 The main purpose of an activation function is to convert an input signal of a node in a artificial neural network to an output signal. That output signal now is used as an input in the next layer in the stack.
 
 * Softmax output to range from 0 to 1
-* Sigmoid or Logistic 
-f(x) = 1 / 1 + exp(-x)
-<img src="https://github.com/MakarenkoElena91/EmTech/blob/master/img/sigmoid.png"/>
+<img src="softmax-activation-function.jpg"/>
 
 This function is usually used in the output layer, as adapts the output to range from 0 to 1(probability).
 * ReLu -Rectified linear units. 0 for all negative numbers and identity for all positive numbers.
@@ -146,6 +144,19 @@ Should be used only in hidden layers of neural network.
 <img src="https://github.com/MakarenkoElena91/EmTech/blob/master/img/relu.png"/>
  </p>
  
+* The Convolution Step
+ The primary purpose of Convolution in case of a ConvNet is to extract features from the input image.
+ <img src="convolution_schematic.gifg"/>
+ In the above image we slide the orange matrix over our original image (green) by 1 pixel (also called ‘stride’) and for every position, we compute element wise multiplication (between the two matrices) and add the multiplication outputs to get the final integer which forms a single element of the output matrix (pink). Note that the 3×3 matrix “sees” only a part of the input image in each stride.
+ [3]
+
+* Pooling
+Spatial Pooling (also called subsampling or downsampling) reduces the dimensionality of each feature map but retains the most important information. Spatial Pooling can be of different types: Max, Average, Sum etc.
+In our case it is Max Pooling, we have defined a spatial neighborhood (a 2×2 window) and taken the largest element  within that window. Instead of taking the largest element we could also take the average (Average Pooling) or sum of all elements in that window. In practice, Max Pooling has been shown to work better.[3]
+
+* Dropout
+In simple words, 'killing' or 'shooting' neurons to avoid overfitting which happens when a) neural network is too large 2) amount of data is not sufficient. In case of overfitting data is being 'hardcoded' which means that network will be perfect at recognizing training set but won't be able to recognize new data.
+
 ## Training Neural Network
 In order to train the neural network we call fit function on model and pass training set of images & training set of labels,the batch size(number of samples neural network is being trained on at a time) defined as 128*, number of epochs - number of iterations neural network is being retrained (which is 12 in our case) , verbose=1 (1 shows a progress bar, 0 = silent) and validation_data(data on which to evaluate the loss and any model metrics at the end of each epoch)
 
@@ -235,6 +246,7 @@ https://keras.io/models/sequential/
 https://www.codesofinterest.com/2017/09/keras-image-data-format.html
 [1]: https://stackoverflow.com/a/57990437
 [2]: https://stackoverflow.com/questions/11142851/adding-borders-to-an-image-using-python
+[3]:https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/
 
 
 
