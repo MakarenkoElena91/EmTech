@@ -135,7 +135,7 @@ Initially weights and biases are assigned randomly.
 The main purpose of an activation function is to convert an input signal of a node in a artificial neural network to an output signal. That output signal now is used as an input in the next layer in the stack.
 
 * Softmax output to range from 0 to 1
-<img src="softmax-activation-function.jpg"/>
+<img src="https://github.com/MakarenkoElena91/EmTech/blob/master/img/softmax-activation-function.jpg"/>
 
 This function is usually used in the output layer, as adapts the output to range from 0 to 1(probability).
 * ReLu -Rectified linear units. 0 for all negative numbers and identity for all positive numbers.
@@ -146,7 +146,7 @@ Should be used only in hidden layers of neural network.
  
 * The Convolution Step
  The primary purpose of Convolution in case of a ConvNet is to extract features from the input image.
- <img src="convolution_schematic.gifg"/>
+ <img src="https://github.com/MakarenkoElena91/EmTech/blob/master/img/convolution_schematic.gif"/>
  In the above image we slide the orange matrix over our original image (green) by 1 pixel (also called ‘stride’) and for every position, we compute element wise multiplication (between the two matrices) and add the multiplication outputs to get the final integer which forms a single element of the output matrix (pink). Note that the 3×3 matrix “sees” only a part of the input image in each stride.
  [3]
 
