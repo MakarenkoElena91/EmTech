@@ -14,6 +14,7 @@
 * [Frontend](#frontend)
   * [Sending an http request](#sending-an-http-request)
 * [Backend](#backend)
+  * [Receiving an http response](###receiving-an-http-response)
   * [Formatting data](#formatting-data)
 * [Sources](#sources)
 
@@ -173,7 +174,8 @@ To save the model:
 ```model.save("modelName.h5")```
 
 # Frontend
-* jQuery library
+## Sending an http request
+Using jQuery - Javascript library.
 ```javascript 
 // Wait until the DOM is ready.
 $(document).ready(function(e) {
@@ -196,7 +198,7 @@ $(document).ready(function(e) {
 ```
 
 # Backend    
-## Sending an http request
+## Receiving an http response
 ```python
 @app.route('/guess', methods=['GET', 'POST'])
 def get_image():
