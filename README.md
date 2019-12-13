@@ -13,7 +13,7 @@
   * [Saving Model](#saving-model)  
 * [Webapp](#webapp)
   * [Sending an http request](#sending-an-http-request)
-  * [Receiving an http response](###receiving-an-http-response)
+  * [Receiving an http response](#receiving-an-http-response)
   * [Formatting data](#formatting-data)
 * [Sources](#sources)
 
@@ -175,6 +175,7 @@ To save the model:
 # Webapp
 ## Sending an http request
 Using jQuery - Javascript library.
+Sending image and receiving the response back
 ```javascript 
 // Wait until the DOM is ready.
 $(document).ready(function(e) {
@@ -185,8 +186,10 @@ $(document).ready(function(e) {
     // Prevent the form actually submitting.
     e.preventDefault();
      canvas = document.getElementById("digitCanvas");
+     // send data
     $.post("/guess", {"imgURL": digitCanvas.toDataURL()}, function(data){
-
+      
+      // display received response
       $("#guess").text(data.message);
 
     });
@@ -194,8 +197,22 @@ $(document).ready(function(e) {
   });
 
 });
+
+
+    // predict returns an array of decimal numbers in a range between 0 and 1
+    predict = model.predict(im2arr)
+    // thus we need to find out the largest one and cast it to int
+    args = int(np.argmax(predict))
+    // as requests/messages are send and received as strings, we need to 'stringify' our result
+    args = json.dumps(args)
+    return {'message': args} 
 ```   
+
+   
+    
 ## Receiving an http response
+
+
 ```python
 @app.route('/guess', methods=['GET', 'POST'])
 def get_image():
