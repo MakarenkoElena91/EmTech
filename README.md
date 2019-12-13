@@ -11,9 +11,8 @@
   * [Defining Neural Network](#defining-neural-network)
   * [Training Neural Network](#training-neural-network)
   * [Saving Model](#saving-model)  
-* [Frontend](#frontend)
+* [Webapp](#webapp)
   * [Sending an http request](#sending-an-http-request)
-* [Backend](#backend)
   * [Receiving an http response](###receiving-an-http-response)
   * [Formatting data](#formatting-data)
 * [Sources](#sources)
@@ -173,7 +172,7 @@ In order to train the neural network we call fit function on model and pass trai
 To save the model:
 ```model.save("modelName.h5")```
 
-# Frontend
+# Webapp
 ## Sending an http request
 Using jQuery - Javascript library.
 ```javascript 
@@ -195,9 +194,7 @@ $(document).ready(function(e) {
   });
 
 });
-```
-
-# Backend    
+```   
 ## Receiving an http response
 ```python
 @app.route('/guess', methods=['GET', 'POST'])
